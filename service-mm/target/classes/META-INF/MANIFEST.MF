@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: service-mm
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Roshan Singh
+Implementation-Vendor-Id: com.suraj.mm
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/service-mm
+Created-By: Maven Integration for Eclipse
+
