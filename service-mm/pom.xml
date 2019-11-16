@@ -30,7 +30,7 @@
 		<persistence-api>1.0.2</persistence-api>
 		<woodstox>4.4.1</woodstox>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
-		<oauth2.version>2.2.1.RELEASE</oauth2.version>
+		<oauth2.version>2.2.5.RELEASE</oauth2.version>
 	</properties>
 
 	<dependencies>
