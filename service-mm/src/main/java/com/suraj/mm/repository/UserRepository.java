@@ -10,10 +10,9 @@ import com.suraj.mm.model.User;
 
 /**
  * @author Roshan Singh
- *@version 1.0
- *Repository for managing all user related DB Qquery 
+ * @version 1.0 Repository for managing all user related DB Query
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long> {
 
 }

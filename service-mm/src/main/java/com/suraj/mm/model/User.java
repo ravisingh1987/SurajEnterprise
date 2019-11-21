@@ -19,7 +19,7 @@ public class User {
 	@Id
 	@GeneratedValue
 	@Column(name = "user_id")
-	private String userId;
+	private Long userId;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -85,6 +85,8 @@ public class User {
 	private String activatedDate;
 
 	@Column(name = "user_desc")
-	private String userDesc ;
+	private String userDesc;
 	/* created_by updated_by created_date updated_date */
+
+
 }

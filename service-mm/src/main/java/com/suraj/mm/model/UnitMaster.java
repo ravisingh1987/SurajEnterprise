@@ -17,7 +17,7 @@ public class UnitMaster {
 	@Id
 	@GeneratedValue
 	@Column(name = "unit_id")
-	private String unitId;
+	private Long unitId;
 	
 	@Column(name = "unit_name")
 	private String unitName;

@@ -17,7 +17,7 @@ public class Payment {
 	@Id
 	@GeneratedValue
 	@Column(name = "paymentId")
-	private String payment_id;
+	private Long payment_id;
 
 	@Column(name = "work_id")
 	private String workId;

@@ -17,7 +17,7 @@ public class Priority {
 	@Id
 	@GeneratedValue
 	@Column(name = "priority_id")
-	private String priorityId;
+	private Long priorityId;
 
 	@Column(name = "user_master_user_id")
 	private String userMasterUserId;

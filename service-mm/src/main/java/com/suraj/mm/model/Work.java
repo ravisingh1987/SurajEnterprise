@@ -15,7 +15,7 @@ public class Work {
 	@Id
 	@GeneratedValue
 	@Column(name = "work_id")
-	private String workId;
+	private Long workId;
 	
 	@Column(name = "user_master_user_id")
 	private String userMasterUserId;

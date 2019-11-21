@@ -17,7 +17,7 @@ public class Rate {
 	@Id
 	@GeneratedValue
 	@Column(name = "rate_id")
-	private String rateId;
+	private Long rateId;
 
 	@Column(name = "unit_master_unit_id")
 	private String unitMasterUnitId;

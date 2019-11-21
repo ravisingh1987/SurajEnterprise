@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author Dilip Kirar 2019
+ * @author Dilip Kirar
  *
  */
 
@@ -18,7 +18,7 @@ public class Machine {
 	@Id
 	@GeneratedValue
 	@Column(name = "machine_id")
-	private String machineId;
+	private Long machineId;
 
 	@Column(name = "user_master_user_id")
 	private String userMasterUserId;

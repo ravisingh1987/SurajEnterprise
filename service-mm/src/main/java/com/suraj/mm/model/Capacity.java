@@ -17,7 +17,7 @@ public class Capacity {
 	@Id
 	@GeneratedValue
 	@Column(name = "capacity_id")
-	private String capacityId;
+	private Long capacityId;
 
 	@Column(name = "user_master_user_id")
 	private String user_master_user_id;
