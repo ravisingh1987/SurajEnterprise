@@ -1,0 +1,7 @@
+.svn/
+target/
+.settings
+.project
+.classpath
+*.db
+.flattend-pom.xml
