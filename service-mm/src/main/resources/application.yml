@@ -1,8 +1,9 @@
 spring:
+  autoconfigure:    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   main:
     allow-bean-definition-overriding: true
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver # com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mm_db?autoreconnect=true
     username: sys_mm
     password: winter@123
@@ -19,4 +20,4 @@ spring:
       
 #Server port configuration..................
 server:
-  port: 9091       
+  port: 9091   

@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * @author Dilip Kirar 2019
  *
  */
-
+@Data
 @Entity
 @Table(name = "priority")
 public class Priority {
@@ -40,4 +42,76 @@ public class Priority {
 	@Column(name = "priority_desc")
 	private String priorityDesc;
 	/* created_by updated_by created_date updated_date */
+
+	public Long getPriorityId() {
+		return priorityId;
+	}
+
+	public void setPriorityId(Long priorityId) {
+		this.priorityId = priorityId;
+	}
+
+	public String getUserMasterUserId() {
+		return userMasterUserId;
+	}
+
+	public void setUserMasterUserId(String userMasterUserId) {
+		this.userMasterUserId = userMasterUserId;
+	}
+
+	public String getWorkId() {
+		return workId;
+	}
+
+	public void setWorkId(String workId) {
+		this.workId = workId;
+	}
+
+	public String getMachineId() {
+		return machineId;
+	}
+
+	public void setMachineId(String machineId) {
+		this.machineId = machineId;
+	}
+
+	public String getPriorityAll() {
+		return priorityAll;
+	}
+
+	public void setPriorityAll(String priorityAll) {
+		this.priorityAll = priorityAll;
+	}
+
+	public String getNonPrioritized() {
+		return nonPrioritized;
+	}
+
+	public void setNonPrioritized(String nonPrioritized) {
+		this.nonPrioritized = nonPrioritized;
+	}
+
+	public String getPrioritized() {
+		return prioritized;
+	}
+
+	public void setPrioritized(String prioritized) {
+		this.prioritized = prioritized;
+	}
+
+	public String getPriorityDesc() {
+		return priorityDesc;
+	}
+
+	public void setPriorityDesc(String priorityDesc) {
+		this.priorityDesc = priorityDesc;
+	}
+
+	@Override
+	public String toString() {
+		return "Priority [priorityId=" + priorityId + ", userMasterUserId=" + userMasterUserId + ", workId=" + workId
+				+ ", machineId=" + machineId + ", priorityAll=" + priorityAll + ", nonPrioritized=" + nonPrioritized
+				+ ", prioritized=" + prioritized + ", priorityDesc=" + priorityDesc + "]";
+	}
+
 }

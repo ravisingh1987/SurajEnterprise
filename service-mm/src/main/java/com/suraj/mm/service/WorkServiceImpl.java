@@ -1,9 +1,12 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.suraj.mm.model.Work;
 import com.suraj.mm.repository.WorkRepository;
@@ -19,29 +22,39 @@ public class WorkServiceImpl implements WorkService {
 	@Autowired
 	private WorkRepository workRepository;
 
+	@Transactional(readOnly = true)
 	@Override
-	public Iterable<Work> listAllWorks() {
+	public List<Work> findAllWorks() {
 		logger.info("listAllWorks called");
-		return workRepository.findAll();
+		List<Work> works = workRepository.findAll();
+
+		return works.isEmpty() ? null : works;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
-	public Work getWorkById(Long id) {
+	public Work findWorkById(Long id) {
 		logger.info("getWorkById called");
 		return workRepository.findById(id).orElse(null);
 	}
 
+	@Transactional(readOnly = false)
 	@Override
-	public Work saveWork(Work work) {
+	public Work saveOrUpdateWork(Work work) {
 		logger.info("saveWork called");
-		return workRepository.save(work);
+		Work w = workRepository.save(work);
+		return w == null ? null : w;
+
 	}
 
+	@Transactional(readOnly = false)
 	@Override
-	public void deleteWork(Long id) {
+	public Integer deleteWork(Long id) {
 		logger.info("deleteWork called");
-		workRepository.deleteById(id);
-
+		Work w = findWorkById(id);
+		w.setWorkFlag("0");
+		saveOrUpdateWork(w);
+		return 0;
 	}
 
 }

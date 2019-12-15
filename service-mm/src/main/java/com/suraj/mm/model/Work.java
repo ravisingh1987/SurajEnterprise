@@ -5,15 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import lombok.Data;
 /**
  * @author Dilip Kirar 2019
  *
  */
+@Data
 @Entity
 @Table(name = "work")
 public class Work {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	@Column(name = "work_id")
 	private Long workId;
 	
@@ -47,4 +53,101 @@ public class Work {
 	
 	@Column(name = "work_flag")
 	private String workFlag;
+
+	public Long getWorkId() {
+		return workId;
+	}
+
+	public void setWorkId(Long workId) {
+		this.workId = workId;
+	}
+
+	public String getUserMasterUserId() {
+		return userMasterUserId;
+	}
+
+	public void setUserMasterUserId(String userMasterUserId) {
+		this.userMasterUserId = userMasterUserId;
+	}
+
+	public String getPartyName() {
+		return partyName;
+	}
+
+	public void setPartyName(String partyName) {
+		this.partyName = partyName;
+	}
+
+	public String getIssueDate() {
+		return issueDate;
+	}
+
+	public void setIssueDate(String issueDate) {
+		this.issueDate = issueDate;
+	}
+
+	public String getTop() {
+		return top;
+	}
+
+	public void setTop(String top) {
+		this.top = top;
+	}
+
+	public String getPant() {
+		return pant;
+	}
+
+	public void setPant(String pant) {
+		this.pant = pant;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getQty() {
+		return qty;
+	}
+
+	public void setQty(String qty) {
+		this.qty = qty;
+	}
+
+	public String getWorkName() {
+		return workName;
+	}
+
+	public void setWorkName(String workName) {
+		this.workName = workName;
+	}
+
+	public String getWorkDesc() {
+		return workDesc;
+	}
+
+	public void setWorkDesc(String workDesc) {
+		this.workDesc = workDesc;
+	}
+
+	public String getWorkFlag() {
+		return workFlag;
+	}
+
+	public void setWorkFlag(String workFlag) {
+		this.workFlag = workFlag;
+	}
+
+	@Override
+	public String toString() {
+		return "Work [workId=" + workId + ", userMasterUserId=" + userMasterUserId + ", partyName=" + partyName
+				+ ", issueDate=" + issueDate + ", top=" + top + ", pant=" + pant + ", size=" + size + ", qty=" + qty
+				+ ", workName=" + workName + ", workDesc=" + workDesc + ", workFlag=" + workFlag + "]";
+	}
+	
+	
 }

@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.Priority;
 
 /**
@@ -8,11 +10,11 @@ import com.suraj.mm.model.Priority;
  */
 public interface PriorityService {
 
-	Iterable<Priority> listAllPriority();
+	List<Priority> findAllPriority();
 
-	Priority getPriorityById(Long id);
+	Priority findPriorityById(Long id);
 
-	Priority savePriority(Priority priority);
+	Priority saveOrUpdatePriority(Priority priority);
 
-	void deletePriority(Long id);
+	Integer deletePriority(Long id);
 }

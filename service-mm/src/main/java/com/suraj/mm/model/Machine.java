@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * @author Dilip Kirar
  *
  */
-
+@Data
 @Entity
 @Table(name = "machine")
 public class Machine {
@@ -37,4 +39,60 @@ public class Machine {
 	 */
 	@Column(name = "is_active")
 	private String isActive;
+
+	public Long getMachineId() {
+		return machineId;
+	}
+
+	public void setMachineId(Long machineId) {
+		this.machineId = machineId;
+	}
+
+	public String getUserMasterUserId() {
+		return userMasterUserId;
+	}
+
+	public void setUserMasterUserId(String userMasterUserId) {
+		this.userMasterUserId = userMasterUserId;
+	}
+
+	public String getMachineName() {
+		return machineName;
+	}
+
+	public void setMachineName(String machineName) {
+		this.machineName = machineName;
+	}
+
+	public String getMachineQty() {
+		return machineQty;
+	}
+
+	public void setMachineQty(String machineQty) {
+		this.machineQty = machineQty;
+	}
+
+	public String getMachineDesc() {
+		return machineDesc;
+	}
+
+	public void setMachineDesc(String machineDesc) {
+		this.machineDesc = machineDesc;
+	}
+
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
+
+	@Override
+	public String toString() {
+		return "Machine [machineId=" + machineId + ", userMasterUserId=" + userMasterUserId + ", machineName="
+				+ machineName + ", machineQty=" + machineQty + ", machineDesc=" + machineDesc + ", isActive=" + isActive
+				+ "]";
+	}
+
 }

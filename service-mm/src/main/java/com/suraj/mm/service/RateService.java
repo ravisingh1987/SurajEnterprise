@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.Rate;
 
 /**
@@ -8,11 +10,12 @@ import com.suraj.mm.model.Rate;
  */
 public interface RateService {
 
-	Iterable<Rate> listAllRate();
+	List<Rate> findAllRate();
 
-	Rate getRateById(Long id);
+	Rate findRateById(Long id);
 
-	Rate saveRate(Rate rate);
+	Rate saveOrUpdateRate(Rate rate);
 
-	void deleteRate(Long id);
+	Integer deleteRate(Long id);
+
 }

@@ -1,11 +1,15 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.suraj.mm.model.UnitMaster;
+import com.suraj.mm.model.User;
 import com.suraj.mm.repository.UnitMasterRepository;
 
 /**
@@ -19,28 +23,37 @@ public class UnitMasterServiceImpl implements UnitMasterService {
 	@Autowired
 	private UnitMasterRepository unitMasterRepository;
 
+	@Transactional(readOnly = true)
 	@Override
-	public Iterable<UnitMaster> listAllUnitMaster() {
+	public List<UnitMaster> findAllUnitMaster() {
 		logger.info("listAllUnitMaster called");
-		return unitMasterRepository.findAll();
+		List<UnitMaster> unitMasters = unitMasterRepository.findAll();
+		return unitMasters.isEmpty() ? null : unitMasters;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
-	public UnitMaster getUnitMasterById(Long id) {
+	public UnitMaster findUnitMasterById(Long id) {
 		logger.info("getUnitMasterById called");
 		return unitMasterRepository.findById(id).orElse(null);
 	}
 
+	@Transactional(readOnly = false)
 	@Override
-	public UnitMaster saveUnitMaster(UnitMaster unitMaster) {
+	public UnitMaster saveOrUpdateUnitMaster(UnitMaster unitMaster) {
 		logger.info("saveUnitMaster called");
-		return unitMasterRepository.save(unitMaster);
+		UnitMaster un = unitMasterRepository.save(unitMaster);
+		return un == null ? null : un;
 	}
 
+	@Transactional(readOnly = false)
 	@Override
-	public void deleteUnitMaster(Long id) {
+	public Integer deleteUnitMaster(Long id) {
 		logger.info("deleteUnitMaster called");
-		unitMasterRepository.deleteById(id);
+		UnitMaster un = findUnitMasterById(id);
+		un.setIsActive("0");
+		saveOrUpdateUnitMaster(un);
+		return 0;
 
 	}
 

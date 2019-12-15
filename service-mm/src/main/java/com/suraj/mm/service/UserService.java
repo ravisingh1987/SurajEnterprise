@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.User;
 
 /**
@@ -8,11 +10,13 @@ import com.suraj.mm.model.User;
  */
 public interface UserService {
 
-	Iterable<User> listAllUsers();
+	List<User> findAllUsers();
 
-	User getUserById(Long id);
+	User findUserById(Long id);
 
-	User saveUser(User user);
+	User saveOrUpdateUser(User user);
 
-	void deleteUser(Long id);
+	Integer deleteUser(Long id);
+
+	User findByLoginName(String userName);
 }

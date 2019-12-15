@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.UnitMaster;
 
 /**
@@ -8,11 +10,11 @@ import com.suraj.mm.model.UnitMaster;
  */
 public interface UnitMasterService {
 
-	Iterable<UnitMaster> listAllUnitMaster();
+	List<UnitMaster> findAllUnitMaster();
 
-	UnitMaster getUnitMasterById(Long id);
+	UnitMaster findUnitMasterById(Long id);
 
-	UnitMaster saveUnitMaster(UnitMaster unitMaster);
+	UnitMaster saveOrUpdateUnitMaster(UnitMaster unitMaster);
 
-	void deleteUnitMaster(Long id);
+	Integer deleteUnitMaster(Long id);
 }

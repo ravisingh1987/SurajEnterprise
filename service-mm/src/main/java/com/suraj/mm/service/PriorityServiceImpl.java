@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +22,30 @@ public class PriorityServiceImpl implements PriorityService {
 	private PriorityRepository priorityRepository;
 
 	@Override
-	public Iterable<Priority> listAllPriority() {
+	public List<Priority> findAllPriority() {
 		logger.info("listAllPriority called");
-		return priorityRepository.findAll();
+		List<Priority> priorities = priorityRepository.findAll();
+		return priorities.isEmpty() ? null : priorities;
 	}
 
 	@Override
-	public Priority getPriorityById(Long id) {
+	public Priority findPriorityById(Long id) {
 		logger.info("getPriorityById called");
 		return priorityRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public Priority savePriority(Priority priority) {
+	public Priority saveOrUpdatePriority(Priority priority) {
 		logger.info("savePriority called");
-		return priorityRepository.save(priority);
+		Priority p = priorityRepository.save(priority);
+		return p == null ? null : p;
 	}
 
 	@Override
-	public void deletePriority(Long id) {
+	public Integer deletePriority(Long id) {
 		logger.info("deletePriority called");
 		priorityRepository.deleteById(id);
+		return 0;
 
 	}
 

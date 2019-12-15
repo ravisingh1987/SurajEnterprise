@@ -1,10 +1,14 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.suraj.mm.model.Capacity;
 import com.suraj.mm.model.Payment;
 import com.suraj.mm.repository.PaymentRepository;
 
@@ -19,28 +23,39 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	private PaymentRepository paymentRepository;
 
+	@Transactional(readOnly = true)
 	@Override
-	public Iterable<Payment> listAllPayment() {
+	public List<Payment> findAllPayment() {
 		logger.info("listAllPayment called");
-		return paymentRepository.findAll();
+		List<Payment> payments = paymentRepository.findAll();
+		return payments.isEmpty() ? null : payments;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
-	public Payment getPaymentById(Long id) {
+	public Payment findPaymentById(Long id) {
 		logger.info("getPaymentById called");
 		return paymentRepository.findById(id).orElse(null);
 	}
 
+	@Transactional(readOnly = false)
 	@Override
-	public Payment savePayment(Payment payment) {
+	public Payment saveOrUpdatePayment(Payment payment) {
 		logger.info("savePayment called");
-		return paymentRepository.save(payment);
+		Payment p = paymentRepository.save(payment);
+		return p == null ? null : p;
+
 	}
 
+	@Transactional(readOnly = false)
 	@Override
-	public void deletePayment(Long id) {
+	public Integer deletePayment(Long id) {
 		logger.info("deletePayment called");
 		paymentRepository.deleteById(id);
+		Payment payment = findPaymentById(id);
+		payment.setPaymentFlag("0");
+		saveOrUpdatePayment(payment);
+		return 0;
 
 	}
 }

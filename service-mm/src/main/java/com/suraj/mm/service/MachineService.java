@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.Machine;
 
 /**
@@ -8,11 +10,11 @@ import com.suraj.mm.model.Machine;
  */
 public interface MachineService {
 
-	Iterable<Machine> listAllMachine();
+	List<Machine> findAllMachine();
 
-	Machine getMachineById(Long id);
+	Machine findMachineById(Long id);
 
-	Machine saveMachine(Machine machine);
+	Machine saveOrUpdateMachine(Machine machine);
 
-	void deleteMachine(Long id);
+	Integer deleteMachine(Long id);
 }

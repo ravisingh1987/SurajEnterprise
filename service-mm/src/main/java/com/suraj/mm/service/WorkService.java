@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.Work;
 
 /**
@@ -8,11 +10,12 @@ import com.suraj.mm.model.Work;
  */
 public interface WorkService {
 
-	Iterable<Work> listAllWorks();
+	List<Work> findAllWorks();
 
-	Work getWorkById(Long id);
+	Work findWorkById(Long id);
 
-	Work saveWork(Work work);
+	Work saveOrUpdateWork(Work work);
 
-	void deleteWork(Long id);
+	Integer deleteWork(Long id);
+
 }

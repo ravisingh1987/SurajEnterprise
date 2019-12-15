@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * @author Dilip Kirar 2019
  *
  */
-
+@Data
 @Entity
 @Table(name = "rate")
 public class Rate {
@@ -40,4 +42,76 @@ public class Rate {
 
 	@Column(name = "is_active")
 	private String isActive;
+
+	public Long getRateId() {
+		return rateId;
+	}
+
+	public void setRateId(Long rateId) {
+		this.rateId = rateId;
+	}
+
+	public String getUnitMasterUnitId() {
+		return unitMasterUnitId;
+	}
+
+	public void setUnitMasterUnitId(String unitMasterUnitId) {
+		this.unitMasterUnitId = unitMasterUnitId;
+	}
+
+	public String getWorkId() {
+		return workId;
+	}
+
+	public void setWorkId(String workId) {
+		this.workId = workId;
+	}
+
+	public String getMachineId() {
+		return machineId;
+	}
+
+	public void setMachineId(String machineId) {
+		this.machineId = machineId;
+	}
+
+	public String getRateValue() {
+		return rateValue;
+	}
+
+	public void setRateValue(String rateValue) {
+		this.rateValue = rateValue;
+	}
+
+	public String getRateDesc() {
+		return rateDesc;
+	}
+
+	public void setRateDesc(String rateDesc) {
+		this.rateDesc = rateDesc;
+	}
+
+	public String getRateUnitId() {
+		return rateUnitId;
+	}
+
+	public void setRateUnitId(String rateUnitId) {
+		this.rateUnitId = rateUnitId;
+	}
+
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
+
+	@Override
+	public String toString() {
+		return "Rate [rateId=" + rateId + ", unitMasterUnitId=" + unitMasterUnitId + ", workId=" + workId
+				+ ", machineId=" + machineId + ", rateValue=" + rateValue + ", rateDesc=" + rateDesc + ", rateUnitId="
+				+ rateUnitId + ", isActive=" + isActive + "]";
+	}
+
 }

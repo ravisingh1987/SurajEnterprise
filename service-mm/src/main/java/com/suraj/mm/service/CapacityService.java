@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.Capacity;
 
 /**
@@ -8,11 +10,11 @@ import com.suraj.mm.model.Capacity;
  */
 public interface CapacityService {
 
-	Iterable<Capacity> listAllCapacity();
+	List<Capacity> findAllCapacity();
 
-	Capacity getCapacityById(Long id);
+	Capacity findCapacityById(Long id);
 
-	Capacity saveCapacity(Capacity capacity);
+	Capacity saveOrUpdateCapacity(Capacity capacity);
 
-	void deleteCapacity(Long id);
+	Integer deleteCapacity(Long id);
 }

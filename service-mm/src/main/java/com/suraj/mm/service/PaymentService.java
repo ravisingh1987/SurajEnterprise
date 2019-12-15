@@ -1,5 +1,7 @@
 package com.suraj.mm.service;
 
+import java.util.List;
+
 import com.suraj.mm.model.Payment;
 
 /**
@@ -8,11 +10,11 @@ import com.suraj.mm.model.Payment;
  */
 public interface PaymentService {
 
-	Iterable<Payment> listAllPayment();
+	List<Payment> findAllPayment();
 
-	Payment getPaymentById(Long id);
+	Payment findPaymentById(Long id);
 
-	Payment savePayment(Payment payment);
+	Payment saveOrUpdatePayment(Payment payment);
 
-	void deletePayment(Long id);
+	Integer deletePayment(Long id);
 }
