@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * @author Dilip Kirar 2019
  *
@@ -15,7 +17,8 @@ import javax.persistence.Table;
 @Table(name = "unit_master")
 public class UnitMaster {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment") 
 	@Column(name = "unit_id")
 	private Long unitId;
 

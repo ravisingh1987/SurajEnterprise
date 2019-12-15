@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 
 @Data
@@ -18,7 +20,8 @@ import lombok.Data;
 public class Capacity {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment") 
 	@Column(name = "capacity_id")
 	private Long capacityId;
 
