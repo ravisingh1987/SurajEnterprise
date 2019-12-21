@@ -7,7 +7,9 @@ package com.suraj.mm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.suraj.mm.model.Work;
+
 @Repository
-public interface UserWorkMappingRepository extends JpaRepository<Object, Long>{
+public interface UserWorkMappingRepository extends JpaRepository<Work, Long>{
 
 }

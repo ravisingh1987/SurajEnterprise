@@ -7,7 +7,9 @@ package com.suraj.mm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.suraj.mm.model.Rate;
+
 @Repository
-public interface WorkRateMappingRepository extends JpaRepository<Object, Long>{
+public interface WorkRateMappingRepository extends JpaRepository<Rate, Long>{
 
 }

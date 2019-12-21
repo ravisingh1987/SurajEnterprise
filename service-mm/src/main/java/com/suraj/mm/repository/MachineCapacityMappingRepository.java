@@ -3,11 +3,13 @@ package com.suraj.mm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.suraj.mm.model.Capacity;
+
 /**
  * @author Dilip Kirar
  * @version 1.0 Repository for managing all MachineCapacityMapping related DB Query
  */
 @Repository
-public interface MachineCapacityMappingRepository extends JpaRepository<Object, Long>{
+public interface MachineCapacityMappingRepository extends JpaRepository<Capacity, Long>{
 
 }
