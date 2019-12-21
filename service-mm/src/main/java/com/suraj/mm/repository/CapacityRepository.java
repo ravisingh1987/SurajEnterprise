@@ -7,7 +7,7 @@ import com.suraj.mm.model.Capacity;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Repository for managing all user related DB Query
+ * @version 1.0 Repository for managing all Capacity related DB Query
  */
 @Repository
 public interface CapacityRepository extends JpaRepository<Capacity, Long> {

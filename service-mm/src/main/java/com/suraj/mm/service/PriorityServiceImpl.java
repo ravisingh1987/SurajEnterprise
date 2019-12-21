@@ -12,7 +12,7 @@ import com.suraj.mm.repository.PriorityRepository;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Service method for the manipulating the User Entity
+ * @version 1.0 Service method for the manipulating the Priority Entity
  */
 @Service
 public class PriorityServiceImpl implements PriorityService {

@@ -13,7 +13,7 @@ import com.suraj.mm.repository.WorkRepository;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Service method for the manipulating the User Entity
+ * @version 1.0 Service method for the manipulating the Work Entity
  */
 @Service
 public class WorkServiceImpl implements WorkService {

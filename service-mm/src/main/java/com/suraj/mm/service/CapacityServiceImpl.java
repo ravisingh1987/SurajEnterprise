@@ -1,5 +1,6 @@
 package com.suraj.mm.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import com.suraj.mm.repository.CapacityRepository;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Service method for the manipulating the User Entity
+ * @version 1.0 Service method for the manipulating the capacity Entity
  */
 @Service
 public class CapacityServiceImpl implements CapacityService {
@@ -42,7 +43,16 @@ public class CapacityServiceImpl implements CapacityService {
 	@Override
 	public Capacity saveOrUpdateCapacity(Capacity capacity) {
 		logger.info("saveOrUpdateCapacity called");
+		if (capacity.getCapacityId()!= null) {
+			capacity.setUpdatedBy("101");
+			capacity.setUpdatedDate(new Date());
+		}else {
+			capacity.setCreatedBy("101");
+			capacity.setCreatedDate(new Date());
+		}
+		
 		Capacity c = capacityRepository.save(capacity);
+		
 		return c == null ? null : c;
 
 	}

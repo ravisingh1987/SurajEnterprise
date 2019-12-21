@@ -14,7 +14,7 @@ import com.suraj.mm.repository.RateRepository;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Service method for the manipulating the User Entity
+ * @version 1.0 Service method for the manipulating the Rate Entity
  */
 @Service
 public class RateServiceImpl implements RateService {

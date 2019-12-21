@@ -17,10 +17,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "payment")
-public class Payment {
+public class Payment extends AbstractEntity{
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment") 
+	@GeneratedValue(generator="paymentInc")
+	@GenericGenerator(name="paymentInc", strategy = "increment") 
 	@Column(name = "paymentId")
 	private Long payment_id;
 

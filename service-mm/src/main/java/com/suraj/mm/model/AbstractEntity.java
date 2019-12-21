@@ -3,14 +3,25 @@
  */
 package com.suraj.mm.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Dilip Kirar 2019
  *
  */
+@MappedSuperclass
+public abstract class AbstractEntity implements Serializable{
 
-public abstract class CommonUtility {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Column(name = "created_by")
 	private String createdBy;
@@ -18,11 +29,13 @@ public abstract class CommonUtility {
 	@Column(name = "updated_by")
 	private String updatedBy;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
-	private String createdDate;
-
+	private Date createdDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_date")
-	private String updatedDate;
+	private Date updatedDate;
 
 	public String getCreatedBy() {
 		return createdBy;
@@ -40,25 +53,25 @@ public abstract class CommonUtility {
 		this.updatedBy = updatedBy;
 	}
 
-	public String getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public String getUpdatedDate() {
+	public Date getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(String updatedDate) {
+	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 
 	@Override
 	public String toString() {
-		return "CommonUtility [createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdDate=" + createdDate
+		return "AbstractEntity [createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdDate=" + createdDate
 				+ ", updatedDate=" + updatedDate + "]";
 	}
 

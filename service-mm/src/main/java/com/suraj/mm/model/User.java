@@ -18,11 +18,11 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "user_master")
-public class User {
+public class User extends AbstractEntity{
 	
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment") 
+	@GeneratedValue(generator="userInc")
+	@GenericGenerator(name="userInc", strategy = "increment") 
 	@Column(name = "user_id")
 	private Long userId;
 

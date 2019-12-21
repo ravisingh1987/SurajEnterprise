@@ -14,7 +14,7 @@ import com.suraj.mm.repository.PaymentRepository;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Service method for the manipulating the User Entity
+ * @version 1.0 Service method for the manipulating the Payment Entity
  */
 @Service
 public class PaymentServiceImpl implements PaymentService {

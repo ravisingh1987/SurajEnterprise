@@ -17,11 +17,11 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "machine")
-public class Machine {
+public class Machine extends AbstractEntity{
 
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment") 
+	@GeneratedValue(generator="machineInc")
+	@GenericGenerator(name="machineInc", strategy = "increment") 
 	@Column(name = "machine_id")
 	private Long machineId;
 

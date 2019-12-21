@@ -14,7 +14,7 @@ import com.suraj.mm.repository.UnitMasterRepository;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Service method for the manipulating the User Entity
+ * @version 1.0 Service method for the manipulating the UnitMaster Entity
  */
 @Service
 public class UnitMasterServiceImpl implements UnitMasterService {

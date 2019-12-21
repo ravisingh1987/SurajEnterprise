@@ -7,7 +7,7 @@ import com.suraj.mm.model.Rate;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Repository for managing all user related DB Query
+ * @version 1.0 Repository for managing all Rate related DB Query
  */
 @Repository
 public interface RateRepository extends JpaRepository<Rate, Long> {

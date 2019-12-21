@@ -15,10 +15,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "unit_master")
-public class UnitMaster {
+public class UnitMaster extends AbstractEntity{
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment") 
+	@GeneratedValue(generator="UnitMasterInc")
+	@GenericGenerator(name="UnitMasterInc", strategy = "increment") 
 	@Column(name = "unit_id")
 	private Long unitId;
 

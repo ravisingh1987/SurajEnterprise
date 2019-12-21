@@ -16,10 +16,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "work")
-public class Work {
+public class Work extends AbstractEntity{
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator="workInc")
+	@GenericGenerator(name="workInc", strategy = "increment")
 	@Column(name = "work_id")
 	private Long workId;
 	
@@ -33,16 +33,16 @@ public class Work {
 	private String issueDate;
 	
 	@Column(name = "top")
-	private String top;
+	private Integer top;
 	
 	@Column(name = "pant")
-	private String pant;
+	private Integer pant;
 	
 	@Column(name = "size")
-	private String size;
+	private Integer size;
 	
 	@Column(name = "qty")
-	private String qty;
+	private Integer qty;
 	
 	@Column(name = "work_name")
 	private String workName;
@@ -86,35 +86,35 @@ public class Work {
 		this.issueDate = issueDate;
 	}
 
-	public String getTop() {
+	public Integer getTop() {
 		return top;
 	}
 
-	public void setTop(String top) {
+	public void setTop(Integer top) {
 		this.top = top;
 	}
 
-	public String getPant() {
+	public Integer getPant() {
 		return pant;
 	}
 
-	public void setPant(String pant) {
+	public void setPant(Integer pant) {
 		this.pant = pant;
 	}
 
-	public String getSize() {
+	public Integer getSize() {
 		return size;
 	}
 
-	public void setSize(String size) {
+	public void setSize(Integer size) {
 		this.size = size;
 	}
 
-	public String getQty() {
+	public Integer getQty() {
 		return qty;
 	}
 
-	public void setQty(String qty) {
+	public void setQty(Integer qty) {
 		this.qty = qty;
 	}
 

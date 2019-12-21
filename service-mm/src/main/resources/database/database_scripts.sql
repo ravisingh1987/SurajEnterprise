@@ -48,7 +48,7 @@ CREATE TABLE WORK (
   user_master_user_id NUMERIC  NOT NULL  ,
   party_name VARCHAR(45)  NULL  ,
   issue_date DATETIME  NULL  ,
-  top INTEGER UNSIGNED  NOT NULL  ,
+  top INTEGER UNSIGNED  NULL  ,
   pant INTEGER UNSIGNED  NULL  ,
   size INTEGER UNSIGNED  NULL  ,
   qty INTEGER UNSIGNED  NULL  ,

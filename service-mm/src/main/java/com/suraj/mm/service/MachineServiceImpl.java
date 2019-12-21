@@ -15,7 +15,7 @@ import com.suraj.mm.repository.MachineRepository;
 
 /**
  * @author Dilip Kirar
- * @version 1.0 Service method for the manipulating the User Entity
+ * @version 1.0 Service method for the manipulating the Machine Entity
  */
 @Service
 public class MachineServiceImpl implements MachineService {
