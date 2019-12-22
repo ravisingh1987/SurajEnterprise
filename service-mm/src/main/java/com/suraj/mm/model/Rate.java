@@ -16,22 +16,18 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "rate")
-public class Rate extends AbstractEntity{
+@Table(name = "rate_master")
+public class Rate extends AbstractEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(generator="rateInc")
-	@GenericGenerator(name="rateInc", strategy = "increment") 
+	@GeneratedValue(generator = "rateInc")
+	@GenericGenerator(name = "rateInc", strategy = "increment")
 	@Column(name = "rate_id")
 	private Long rateId;
-
-	@Column(name = "unit_master_unit_id")
-	private String unitMasterUnitId;
-
-	@Column(name = "work_id")
-	private String workId;
-
-	@Column(name = "machine_id")
-	private String machineId;
 
 	@Column(name = "rate_value")
 	private String rateValue;
@@ -52,30 +48,6 @@ public class Rate extends AbstractEntity{
 
 	public void setRateId(Long rateId) {
 		this.rateId = rateId;
-	}
-
-	public String getUnitMasterUnitId() {
-		return unitMasterUnitId;
-	}
-
-	public void setUnitMasterUnitId(String unitMasterUnitId) {
-		this.unitMasterUnitId = unitMasterUnitId;
-	}
-
-	public String getWorkId() {
-		return workId;
-	}
-
-	public void setWorkId(String workId) {
-		this.workId = workId;
-	}
-
-	public String getMachineId() {
-		return machineId;
-	}
-
-	public void setMachineId(String machineId) {
-		this.machineId = machineId;
 	}
 
 	public String getRateValue() {
@@ -112,8 +84,7 @@ public class Rate extends AbstractEntity{
 
 	@Override
 	public String toString() {
-		return "Rate [rateId=" + rateId + ", unitMasterUnitId=" + unitMasterUnitId + ", workId=" + workId
-				+ ", machineId=" + machineId + ", rateValue=" + rateValue + ", rateDesc=" + rateDesc + ", rateUnitId="
+		return "Rate [rateId=" + rateId + ", rateValue=" + rateValue + ", rateDesc=" + rateDesc + ", rateUnitId="
 				+ rateUnitId + ", isActive=" + isActive + "]";
 	}
 

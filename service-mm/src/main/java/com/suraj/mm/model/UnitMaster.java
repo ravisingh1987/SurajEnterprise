@@ -16,6 +16,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "unit_master")
 public class UnitMaster extends AbstractEntity{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(generator="UnitMasterInc")
 	@GenericGenerator(name="UnitMasterInc", strategy = "increment") 

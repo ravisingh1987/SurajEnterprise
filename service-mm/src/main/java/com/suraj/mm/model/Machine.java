@@ -16,7 +16,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "machine")
+@Table(name = "machine_master")
 public class Machine extends AbstractEntity{
 
 	@Id
@@ -24,9 +24,6 @@ public class Machine extends AbstractEntity{
 	@GenericGenerator(name="machineInc", strategy = "increment") 
 	@Column(name = "machine_id")
 	private Long machineId;
-
-	@Column(name = "user_master_user_id")
-	private String userMasterUserId;
 
 	@Column(name = "machine_name")
 	private String machineName;
@@ -49,14 +46,6 @@ public class Machine extends AbstractEntity{
 
 	public void setMachineId(Long machineId) {
 		this.machineId = machineId;
-	}
-
-	public String getUserMasterUserId() {
-		return userMasterUserId;
-	}
-
-	public void setUserMasterUserId(String userMasterUserId) {
-		this.userMasterUserId = userMasterUserId;
 	}
 
 	public String getMachineName() {
@@ -93,9 +82,9 @@ public class Machine extends AbstractEntity{
 
 	@Override
 	public String toString() {
-		return "Machine [machineId=" + machineId + ", userMasterUserId=" + userMasterUserId + ", machineName="
-				+ machineName + ", machineQty=" + machineQty + ", machineDesc=" + machineDesc + ", isActive=" + isActive
-				+ "]";
+		return "Machine [machineId=" + machineId + ", machineName=" + machineName + ", machineQty=" + machineQty
+				+ ", machineDesc=" + machineDesc + ", isActive=" + isActive + "]";
 	}
+
 
 }

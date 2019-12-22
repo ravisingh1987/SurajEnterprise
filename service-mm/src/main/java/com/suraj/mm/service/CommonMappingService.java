@@ -2,6 +2,18 @@ package com.suraj.mm.service;
 
 import java.util.List;
 
+import com.suraj.mm.model.MachineCapacityMapping;
+import com.suraj.mm.model.MachinePriorityMapping;
+import com.suraj.mm.model.MachineRateMapping;
+import com.suraj.mm.model.RateUnitmasterMapping;
+import com.suraj.mm.model.UserCapacityMapping;
+import com.suraj.mm.model.UserMachineMapping;
+import com.suraj.mm.model.UserPaymentMapping;
+import com.suraj.mm.model.UserPriorityMapping;
+import com.suraj.mm.model.WorkPaymentMapping;
+import com.suraj.mm.model.WorkPriorityMapping;
+import com.suraj.mm.model.WorkRateMapping;
+
 /**
  * @author Dilip Kirar
  *
@@ -10,85 +22,100 @@ public interface CommonMappingService {
 	/* Service for user_machine_mapping */
 	List<?> findAllUserMachineMapping();
 
-	void saveOrUpdateUserMachineMapping();
+	void saveOrUpdateUserMachineMapping(UserMachineMapping userMachineMapping);
 
-	Integer deleteUserMachineMapping(Long id);
+	Integer deleteUserMachineMappingByUserId(Long userId);
+
+	Integer deleteUserMachineMappingByMachineId(Long machineId);
 
 	/* Service for machine_capacity_mapping */
 	List<?> findAllMachineCapacityMapping();
 
-	void saveOrUpdateMachineCapacityMapping();
+	void saveOrUpdateMachineCapacityMapping(MachineCapacityMapping machineCapacityMapping);
 
-	Integer deleteMachineCapacityMapping(Long id);
+	Integer deleteMachineCapacityMappingByMachineId(Long machineId);
 
-	/* Service for user_work_mapping */
-	List<?> findAllUserWorkMapping();
-
-	void saveOrUpdateUserWorkMapping();
-
-	Integer deleteUserWorkMapping(Long id);
+	Integer deleteMachineCapacityMappingByCapacityId(Long capacityId);
 
 	/* Service for user_capacity_mapping */
 	List<?> findAllUserCapacityMapping();
 
-	void saveOrUpdateUserCapacityMapping();
+	void saveOrUpdateUserCapacityMapping(UserCapacityMapping userCapacityMapping);
 
-	Integer deleteUserCapacityMapping(Long id);
+	Integer deleteUserCapacityMappingByUserId(Long userId);
+
+	Integer deleteUserCapacityMappingByCapacityId(Long capacityId);
 
 	/* Service for machine_priority_mapping */
 	List<?> findAllMachinePriorityMapping();
 
-	void saveOrUpdateMachinePriorityMapping();
+	void saveOrUpdateMachinePriorityMapping(MachinePriorityMapping machinePriorityMapping);
 
-	Integer deleteMachinePriorityMapping(Long id);
+	Integer deleteMachinePriorityMappingByMachineId(Long machineId);
+
+	Integer deleteMachinePriorityMappingByPriorityId(Long priorityId);
 
 	/* Service for work_priority_mapping */
 	List<?> findAllWorkPriorityMapping();
 
-	void saveOrUpdateWorkPriorityMapping();
+	void saveOrUpdateWorkPriorityMapping(WorkPriorityMapping workPriorityMapping);
 
-	Integer deleteWorkPriorityMapping(Long id);
+	Integer deleteWorkPriorityMappingByWorkId(Long worIkd);
+
+	Integer deleteWorkPriorityMappingByPriorityId(Long priorityId);
 
 	/* Service for user_priority_mapping */
 	List<?> findAllUserPriorityMapping();
 
-	void saveOrUpdateUserPriorityMapping();
+	void saveOrUpdateUserPriorityMapping(UserPriorityMapping userPriorityMapping);
 
-	Integer deleteUserPriorityMapping(Long id);
+	Integer deleteUserPriorityMappingByUserId(Long userId);
+
+	Integer deleteUserPriorityMappingByPriority(Long priorityId);
 
 	/* Service for user_payment_mapping */
 	List<?> findAllUserPaymentMapping();
 
-	void saveOrUpdateUserPaymentMapping();
+	void saveOrUpdateUserPaymentMapping(UserPaymentMapping userPaymentMapping);
 
-	Integer deleteUserPaymentMapping(Long id);
+	Integer deleteUserPaymentMappingByUserId(Long userId);
+
+	Integer deleteUserPaymentMappingByPaymentId(Long paymentId);
 
 	/* Service for work_payment_mapping */
 	List<?> findAllWorkPaymentMapping();
 
-	void saveOrUpdateWorkPaymentMapping();
+	void saveOrUpdateWorkPaymentMapping(WorkPaymentMapping workPaymentMapping);
 
-	Integer deleteWorkPaymentMapping(Long id);
+	Integer deleteWorkPaymentMappingByWorkId(Long workId);
 
+	Integer deleteWorkPaymentMappingByPaymentId(Long paymentId);
+	
 	/* Service for rate_unitmaster_mapping */
 	List<?> findAllRateUnitMapping();
 
-	void saveOrUpdateRateUnitMapping();
+	void saveOrUpdateRateUnitMapping(RateUnitmasterMapping rateUnitMapping);
 
-	Integer deleteRateUnitMapping(Long id);
+	Integer deleteRateUnitMappingByRateId(Long RateId);
+	
+	Integer deleteRateUnitMappingByUnitId(Long unitId);
 
 	/* Service for work_rate_mapping */
 	List<?> findAllWorkRateMapping();
 
-	void saveOrUpdateWorkRateMapping();
+	void saveOrUpdateWorkRateMapping(WorkRateMapping workRateMapping);
 
-	Integer deleteWorkRateMapping(Long id);
+	Integer deleteWorkRateMappingByWorkId(Long workId);
+	
+	Integer deleteWorkRateMappingByRateId(Long id);
 
 	/* Service for machinne_rate_mapping */
 	List<?> findAllMachineRateMapping();
 
-	void saveOrUpdateMachineRateMapping();
+	void saveOrUpdateMachineRateMapping(MachineRateMapping MachineRateMapping);
 
-	Integer deleteMachineRateMapping(Long id);
+	Integer deleteMachineRateMappingByMachineId(Long machineId);
+	
+	Integer deleteMachineRateMappingByRateId(Long rateId);
 
 }

@@ -7,9 +7,9 @@ package com.suraj.mm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.suraj.mm.model.Payment;
+import com.suraj.mm.model.WorkPaymentMapping;
 
 @Repository
-public interface WorkPaymentMappingRepository extends JpaRepository<Payment, Long>{
+public interface WorkPaymentMappingRepository extends JpaRepository<WorkPaymentMapping, Long>{
 
 }

@@ -16,19 +16,18 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "payment")
-public class Payment extends AbstractEntity{
+@Table(name = "payment_master")
+public class Payment extends AbstractEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(generator="paymentInc")
-	@GenericGenerator(name="paymentInc", strategy = "increment") 
+	@GeneratedValue(generator = "paymentInc")
+	@GenericGenerator(name = "paymentInc", strategy = "increment")
 	@Column(name = "paymentId")
 	private Long payment_id;
-
-	@Column(name = "work_id")
-	private String workId;
-
-	@Column(name = "user_master_user_id")
-	private String userMasterUserId;
 
 	@Column(name = "payment_value")
 	private String paymentValue;
@@ -55,22 +54,6 @@ public class Payment extends AbstractEntity{
 
 	public void setPayment_id(Long payment_id) {
 		this.payment_id = payment_id;
-	}
-
-	public String getWorkId() {
-		return workId;
-	}
-
-	public void setWorkId(String workId) {
-		this.workId = workId;
-	}
-
-	public String getUserMasterUserId() {
-		return userMasterUserId;
-	}
-
-	public void setUserMasterUserId(String userMasterUserId) {
-		this.userMasterUserId = userMasterUserId;
 	}
 
 	public String getPaymentValue() {
@@ -123,9 +106,8 @@ public class Payment extends AbstractEntity{
 
 	@Override
 	public String toString() {
-		return "Payment [payment_id=" + payment_id + ", workId=" + workId + ", userMasterUserId=" + userMasterUserId
-				+ ", paymentValue=" + paymentValue + ", paymentDesc=" + paymentDesc + ", paid=" + paid + ", unPaid="
-				+ unPaid + ", total=" + total + ", paymentFlag=" + paymentFlag + "]";
+		return "Payment [payment_id=" + payment_id + ", paymentValue=" + paymentValue + ", paymentDesc=" + paymentDesc
+				+ ", paid=" + paid + ", unPaid=" + unPaid + ", total=" + total + ", paymentFlag=" + paymentFlag + "]";
 	}
 
 }

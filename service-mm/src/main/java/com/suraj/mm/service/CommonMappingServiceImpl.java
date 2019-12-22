@@ -2,11 +2,15 @@ package com.suraj.mm.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.suraj.mm.model.*;
 import com.suraj.mm.repository.*;
 
 /**
@@ -17,6 +21,8 @@ import com.suraj.mm.repository.*;
 public class CommonMappingServiceImpl implements CommonMappingService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	@Autowired
+	private EntityManager entityManager;
 	@Autowired
 	private MachineCapacityMappingRepository machineCapacityMappingRepository;
 	@Autowired
@@ -34,29 +40,46 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	@Autowired
 	private UserPriorityMappingRepository userPriorityMappingRepository;
 	@Autowired
-	private UserWorkMappingRepository userWorkMappingRepository;
-	@Autowired
 	private WorkPaymentMappingRepository workPaymentMappingRepository;
 	@Autowired
 	private WorkPriorityMappingRepository workPriorityMappingRepository;
 	@Autowired
 	private WorkRateMappingRepository workRateMappingRepository;
 
-	
+	/**
+	 * In this function to create Hibernate session in persistence class Session
+	 * hSession = entityManager.unwrap(Session.class);
+	 */
 	@Override
 	public List<?> findAllUserMachineMapping() {
+		Session hSession = entityManager.unwrap(Session.class);
+		try {
+			String sql = "select * from User u ,Machine m ,UserMachineMapping um where um.userId= u.userId and um.machineId= m.machineId";
+			Query query = hSession.createQuery(sql);
+			List<Object[]> listObj = query.list();
+			return listObj;
+		} finally {
+			if (hSession.isOpen()) {
+				hSession.close();
+			}
+		}
+
+	}
+
+	@Override
+	public void saveOrUpdateUserMachineMapping(UserMachineMapping userMachineMapping) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Integer deleteUserMachineMappingByUserId(Long userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void saveOrUpdateUserMachineMapping() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Integer deleteUserMachineMapping(Long id) {
+	public Integer deleteUserMachineMappingByMachineId(Long machineId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -68,31 +91,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateMachineCapacityMapping() {
+	public void saveOrUpdateMachineCapacityMapping(MachineCapacityMapping machineCapacityMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteMachineCapacityMapping(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<?> findAllUserWorkMapping() {
+	public Integer deleteMachineCapacityMappingByMachineId(Long machineId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void saveOrUpdateUserWorkMapping() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Integer deleteUserWorkMapping(Long id) {
+	public Integer deleteMachineCapacityMappingByCapacityId(Long capacityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -104,13 +115,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateUserCapacityMapping() {
+	public void saveOrUpdateUserCapacityMapping(UserCapacityMapping userCapacityMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteUserCapacityMapping(Long id) {
+	public Integer deleteUserCapacityMappingByUserId(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteUserCapacityMappingByCapacityId(Long capacityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -122,13 +139,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateMachinePriorityMapping() {
+	public void saveOrUpdateMachinePriorityMapping(MachinePriorityMapping machinePriorityMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteMachinePriorityMapping(Long id) {
+	public Integer deleteMachinePriorityMappingByMachineId(Long machineId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteMachinePriorityMappingByPriorityId(Long priorityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -140,13 +163,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateWorkPriorityMapping() {
+	public void saveOrUpdateWorkPriorityMapping(WorkPriorityMapping workPriorityMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteWorkPriorityMapping(Long id) {
+	public Integer deleteWorkPriorityMappingByWorkId(Long worIkd) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteWorkPriorityMappingByPriorityId(Long priorityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -158,13 +187,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateUserPriorityMapping() {
+	public void saveOrUpdateUserPriorityMapping(UserPriorityMapping userPriorityMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteUserPriorityMapping(Long id) {
+	public Integer deleteUserPriorityMappingByUserId(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteUserPriorityMappingByPriority(Long priorityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -176,13 +211,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateUserPaymentMapping() {
+	public void saveOrUpdateUserPaymentMapping(UserPaymentMapping userPaymentMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteUserPaymentMapping(Long id) {
+	public Integer deleteUserPaymentMappingByUserId(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteUserPaymentMappingByPaymentId(Long paymentId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -194,13 +235,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateWorkPaymentMapping() {
+	public void saveOrUpdateWorkPaymentMapping(WorkPaymentMapping workPaymentMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteWorkPaymentMapping(Long id) {
+	public Integer deleteWorkPaymentMappingByWorkId(Long workId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteWorkPaymentMappingByPaymentId(Long paymentId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -212,13 +259,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateRateUnitMapping() {
+	public void saveOrUpdateRateUnitMapping(RateUnitmasterMapping rateUnitMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteRateUnitMapping(Long id) {
+	public Integer deleteRateUnitMappingByRateId(Long RateId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteRateUnitMappingByUnitId(Long unitId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -230,13 +283,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateWorkRateMapping() {
+	public void saveOrUpdateWorkRateMapping(WorkRateMapping workRateMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteWorkRateMapping(Long id) {
+	public Integer deleteWorkRateMappingByWorkId(Long workId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteWorkRateMappingByRateId(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -248,13 +307,19 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	}
 
 	@Override
-	public void saveOrUpdateMachineRateMapping() {
+	public void saveOrUpdateMachineRateMapping(MachineRateMapping MachineRateMapping) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Integer deleteMachineRateMapping(Long id) {
+	public Integer deleteMachineRateMappingByMachineId(Long machineId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteMachineRateMappingByRateId(Long rateId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

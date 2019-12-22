@@ -20,6 +20,11 @@ import lombok.Data;
 @Table(name = "user_master")
 public class User extends AbstractEntity{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(generator="userInc")
 	@GenericGenerator(name="userInc", strategy = "increment") 

@@ -17,6 +17,11 @@ import lombok.Data;
 @Entity
 @Table(name = "work")
 public class Work extends AbstractEntity{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(generator="workInc")
 	@GenericGenerator(name="workInc", strategy = "increment")

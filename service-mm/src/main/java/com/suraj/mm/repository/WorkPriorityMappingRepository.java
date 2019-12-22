@@ -7,9 +7,9 @@ package com.suraj.mm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.suraj.mm.model.Priority;
+import com.suraj.mm.model.WorkPriorityMapping;
 
 @Repository
-public interface WorkPriorityMappingRepository extends JpaRepository<Priority, Long>{
+public interface WorkPriorityMappingRepository extends JpaRepository<WorkPriorityMapping, Long>{
 
 }

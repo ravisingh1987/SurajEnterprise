@@ -16,20 +16,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "capacity")
-public class Capacity extends AbstractEntity{
+@Table(name = "capacity_master")
+public class Capacity extends AbstractEntity {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="capacityInc")
-	@GenericGenerator(name="capacityInc", strategy = "increment") 
+	@GeneratedValue(generator = "capacityInc")
+	@GenericGenerator(name = "capacityInc", strategy = "increment")
 	@Column(name = "capacity_id")
 	private Long capacityId;
-
-	@Column(name = "user_master_user_id")
-	private String user_master_user_id;
-
-	@Column(name = "machine_id")
-	private String machine_id;
 
 	@Column(name = "capacity_value")
 	private String capacity_value;
@@ -46,22 +45,6 @@ public class Capacity extends AbstractEntity{
 
 	public void setCapacityId(Long capacityId) {
 		this.capacityId = capacityId;
-	}
-
-	public String getUser_master_user_id() {
-		return user_master_user_id;
-	}
-
-	public void setUser_master_user_id(String user_master_user_id) {
-		this.user_master_user_id = user_master_user_id;
-	}
-
-	public String getMachine_id() {
-		return machine_id;
-	}
-
-	public void setMachine_id(String machine_id) {
-		this.machine_id = machine_id;
 	}
 
 	public String getCapacity_value() {
@@ -90,13 +73,8 @@ public class Capacity extends AbstractEntity{
 
 	@Override
 	public String toString() {
-		return "Capacity [capacityId=" + capacityId + ", user_master_user_id=" + user_master_user_id + ", machine_id="
-				+ machine_id + ", capacity_value=" + capacity_value + ", capacity_desc=" + capacity_desc
-				+ ", capacity_flag=" + capacity_flag + "]";
+		return "Capacity [capacityId=" + capacityId + ", capacity_value=" + capacity_value + ", capacity_desc="
+				+ capacity_desc + ", capacity_flag=" + capacity_flag + "]";
 	}
-
-	/*
-	 * created_by updated_by created_date updated_date
-	 */
 
 }

@@ -16,22 +16,18 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "priority")
-public class Priority extends AbstractEntity{
+@Table(name = "priority_master")
+public class Priority extends AbstractEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(generator="priorityInc")
-	@GenericGenerator(name="priorityInc", strategy = "increment") 
+	@GeneratedValue(generator = "priorityInc")
+	@GenericGenerator(name = "priorityInc", strategy = "increment")
 	@Column(name = "priority_id")
 	private Long priorityId;
-
-	@Column(name = "user_master_user_id")
-	private String userMasterUserId;
-
-	@Column(name = "work_id")
-	private String workId;
-
-	@Column(name = "machine_id")
-	private String machineId;
 
 	@Column(name = "priority_all")
 	private String priorityAll;
@@ -52,30 +48,6 @@ public class Priority extends AbstractEntity{
 
 	public void setPriorityId(Long priorityId) {
 		this.priorityId = priorityId;
-	}
-
-	public String getUserMasterUserId() {
-		return userMasterUserId;
-	}
-
-	public void setUserMasterUserId(String userMasterUserId) {
-		this.userMasterUserId = userMasterUserId;
-	}
-
-	public String getWorkId() {
-		return workId;
-	}
-
-	public void setWorkId(String workId) {
-		this.workId = workId;
-	}
-
-	public String getMachineId() {
-		return machineId;
-	}
-
-	public void setMachineId(String machineId) {
-		this.machineId = machineId;
 	}
 
 	public String getPriorityAll() {
@@ -112,9 +84,8 @@ public class Priority extends AbstractEntity{
 
 	@Override
 	public String toString() {
-		return "Priority [priorityId=" + priorityId + ", userMasterUserId=" + userMasterUserId + ", workId=" + workId
-				+ ", machineId=" + machineId + ", priorityAll=" + priorityAll + ", nonPrioritized=" + nonPrioritized
-				+ ", prioritized=" + prioritized + ", priorityDesc=" + priorityDesc + "]";
+		return "Priority [priorityId=" + priorityId + ", priorityAll=" + priorityAll + ", nonPrioritized="
+				+ nonPrioritized + ", prioritized=" + prioritized + ", priorityDesc=" + priorityDesc + "]";
 	}
 
 }
