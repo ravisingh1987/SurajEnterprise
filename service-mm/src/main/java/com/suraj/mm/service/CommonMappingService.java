@@ -2,6 +2,7 @@ package com.suraj.mm.service;
 
 import java.util.List;
 
+import com.suraj.mm.dto.MachineDTO;
 import com.suraj.mm.model.MachineCapacityMapping;
 import com.suraj.mm.model.MachinePriorityMapping;
 import com.suraj.mm.model.MachineRateMapping;
@@ -20,9 +21,13 @@ import com.suraj.mm.model.WorkRateMapping;
  */
 public interface CommonMappingService {
 	/* Service for user_machine_mapping */
-	List<?> findAllUserMachineMapping();
-
-	void saveOrUpdateUserMachineMapping(UserMachineMapping userMachineMapping);
+	List<?> findAllUserMachineMapping(Class<?> uMFlag);
+	
+	List<?> findAllMachineDtoByUserId(Long userId);	
+	
+	List<?> findAllMachineDtoByMachineId(Long machineId);
+	
+	UserMachineMapping saveOrUpdateUserMachineMapping(MachineDTO machineDto);
 
 	Integer deleteUserMachineMappingByUserId(Long userId);
 

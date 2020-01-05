@@ -1,5 +1,6 @@
 package com.suraj.mm.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,6 +43,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User saveOrUpdateUser(User user) {
 		logger.info("saveUser called");
+		if (user.getUserId()!= null) {
+			user.setUpdatedBy("ADMIN");
+			user.setLastLogin(new Date());
+			user.setUpdatedDate(new Date());
+		}else {
+			user.setCreatedBy("ADMIN");
+			user.setCreatedDate(new Date());
+		}
 		User u = userRepository.save(user);
 		return u == null ? null : u;
 	}

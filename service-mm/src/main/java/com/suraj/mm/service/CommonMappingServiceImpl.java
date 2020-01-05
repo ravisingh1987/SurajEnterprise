@@ -6,12 +6,39 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.hibernate.transform.Transformers;
+import org.hibernate.type.StandardBasicTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.suraj.mm.model.*;
-import com.suraj.mm.repository.*;
+
+import com.suraj.mm.dto.MachineDTO;
+import com.suraj.mm.mapper.MachineMapper;
+import com.suraj.mm.model.Machine;
+import com.suraj.mm.model.MachineCapacityMapping;
+import com.suraj.mm.model.MachinePriorityMapping;
+import com.suraj.mm.model.MachineRateMapping;
+import com.suraj.mm.model.RateUnitmasterMapping;
+import com.suraj.mm.model.User;
+import com.suraj.mm.model.UserCapacityMapping;
+import com.suraj.mm.model.UserMachineMapping;
+import com.suraj.mm.model.UserPaymentMapping;
+import com.suraj.mm.model.UserPriorityMapping;
+import com.suraj.mm.model.WorkPaymentMapping;
+import com.suraj.mm.model.WorkPriorityMapping;
+import com.suraj.mm.model.WorkRateMapping;
+import com.suraj.mm.repository.MachineCapacityMappingRepository;
+import com.suraj.mm.repository.MachinePriorityMappingRepository;
+import com.suraj.mm.repository.MachinneRateMappingRepository;
+import com.suraj.mm.repository.RateUnitmasterMappingRepository;
+import com.suraj.mm.repository.UserCapacityMappingRepository;
+import com.suraj.mm.repository.UserMachineMappingRepository;
+import com.suraj.mm.repository.UserPaymentMappingRepository;
+import com.suraj.mm.repository.UserPriorityMappingRepository;
+import com.suraj.mm.repository.WorkPaymentMappingRepository;
+import com.suraj.mm.repository.WorkPriorityMappingRepository;
+import com.suraj.mm.repository.WorkRateMappingRepository;
 
 /**
  * @author Dilip Kirar
@@ -45,19 +72,38 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	private WorkPriorityMappingRepository workPriorityMappingRepository;
 	@Autowired
 	private WorkRateMappingRepository workRateMappingRepository;
+	@Autowired
+	private MachineMapper machineMapper;
 
 	/**
 	 * In this function to create Hibernate session in persistence class Session
 	 * hSession = entityManager.unwrap(Session.class);
 	 */
 	@Override
-	public List<?> findAllUserMachineMapping() {
+	public List<?> findAllUserMachineMapping(Class<?> uMFlag) {
 		Session hSession = entityManager.unwrap(Session.class);
 		try {
-			String sql = "select * from User u ,Machine m ,UserMachineMapping um where um.userId= u.userId and um.machineId= m.machineId";
-			Query query = hSession.createQuery(sql);
-			List<Object[]> listObj = query.list();
-			return listObj;
+			if (uMFlag.equals(User.class)) {
+				String sql = "SELECT u.user_id AS userId ,u.first_name AS firstName "
+						+ "FROM  user_master u , machine_master m ,user_machine_mapping um "
+						+ "WHERE u.user_id= um.user_id AND m.machine_id= um.machine_id AND m.is_active = 'Yes' ";
+				Query query = hSession.createSQLQuery(sql).addScalar("userId", StandardBasicTypes.LONG)
+						.addScalar("firstName", StandardBasicTypes.STRING);
+
+				List<User> listUser = query.setResultTransformer(Transformers.aliasToBean(User.class)).list();
+				return listUser;
+			} else {
+				String sql = "SELECT m.machine_id AS machineId ,m.machine_name AS machineName, m.machine_qty AS machineQty,m.machine_desc AS machineDesc "
+						+ " FROM  user_master u , machine_master m ,user_machine_mapping um "
+						+ " WHERE u.user_id= um.user_id AND m.machine_id= um.machine_id AND m.is_active = 'Yes' ";
+				Query query = hSession.createSQLQuery(sql).addScalar("machineId", StandardBasicTypes.LONG)
+						.addScalar("machineName", StandardBasicTypes.STRING)
+						.addScalar("machineQty", StandardBasicTypes.INTEGER)
+						.addScalar("machineDesc", StandardBasicTypes.STRING);
+
+				List<Machine> listMachine = query.setResultTransformer(Transformers.aliasToBean(Machine.class)).list();
+				return listMachine;
+			}
 		} finally {
 			if (hSession.isOpen()) {
 				hSession.close();
@@ -65,22 +111,45 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 		}
 
 	}
+	@Override
+	public List<?> findAllMachineDtoByUserId(Long userId) {
+		
+		return null;
+	}
 
 	@Override
-	public void saveOrUpdateUserMachineMapping(UserMachineMapping userMachineMapping) {
-		// TODO Auto-generated method stub
+	public List<?> findAllMachineDtoByMachineId(Long machineId) {
+		Session hSession = entityManager.unwrap(Session.class);
+		
+		String sql ="SELECT u.user_id AS userID,m.machine_id AS machineId ,cm.capacity_id AS capacityId,cm.capacity_value AS capacityValue, " + 
+				"cm.capacity_desc AS capacityDesc,m.machine_name AS machineName, m.is_active AS machineStatus, m.machine_qty AS machineQty, m.machine_desc AS machineDesc " + 
+				"FROM  user_master u , machine_master m ,user_machine_mapping um ,capacity_master cm ,machine_capacity_mapping mcp ,user_capacity_mapping ucp " + 
+				"WHERE u.user_id= um.user_id AND m.machine_id= um.machine_id AND m.machine_id = mcp.machine_id AND mcp.capacity_id= cm.capacity_id AND m.is_active = 'Yes' AND m.machine_id ="+machineId;
+		try {
+			hSession.createSQLQuery(sql).list();
+			
+		} finally {
+			// TODO: handle finally clause
+		}
+		return null;
+	}
+	@Override
+	public UserMachineMapping saveOrUpdateUserMachineMapping(MachineDTO machineDto) {
+		UserMachineMapping userMachineMapping = machineMapper.mapFromMachineDto(machineDto);
+		UserMachineMapping ump = userMachineMappingRepository.save(userMachineMapping);
+		return ump == null ? null : ump;
 
 	}
 
 	@Override
 	public Integer deleteUserMachineMappingByUserId(Long userId) {
-		// TODO Auto-generated method stub
+		userMachineMappingRepository.deleteById(userId);
 		return null;
 	}
 
 	@Override
 	public Integer deleteUserMachineMappingByMachineId(Long machineId) {
-		// TODO Auto-generated method stub
+		userMachineMappingRepository.deleteById(machineId);
 		return null;
 	}
 
@@ -323,5 +392,7 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

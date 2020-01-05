@@ -29,14 +29,11 @@ public class Machine extends AbstractEntity{
 	private String machineName;
 
 	@Column(name = "machine_qty")
-	private String machineQty;
+	private Integer machineQty;
 
 	@Column(name = "machine_desc")
 	private String machineDesc;
 
-	/*
-	 * created_by updated_by created_date updated_date
-	 */
 	@Column(name = "is_active")
 	private String isActive;
 
@@ -56,11 +53,11 @@ public class Machine extends AbstractEntity{
 		this.machineName = machineName;
 	}
 
-	public String getMachineQty() {
+	public Integer getMachineQty() {
 		return machineQty;
 	}
 
-	public void setMachineQty(String machineQty) {
+	public void setMachineQty(Integer machineQty) {
 		this.machineQty = machineQty;
 	}
 

@@ -1,5 +1,6 @@
 package com.suraj.mm.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.suraj.mm.model.Capacity;
 import com.suraj.mm.model.Machine;
-import com.suraj.mm.model.Rate;
 import com.suraj.mm.repository.MachineRepository;
 
 /**
@@ -44,6 +43,13 @@ public class MachineServiceImpl implements MachineService {
 	@Override
 	public Machine saveOrUpdateMachine(Machine machine) {
 		logger.info("saveMachine called");
+		if (machine.getMachineId() != null) {
+			machine.setUpdatedBy("ADMIN");
+			machine.setUpdatedDate(new Date());
+		} else {
+			machine.setCreatedBy("ADMIN");
+			machine.setCreatedDate(new Date());
+		}
 		Machine m = machineRepository.save(machine);
 		return m == null ? null : m;
 	}
@@ -53,7 +59,7 @@ public class MachineServiceImpl implements MachineService {
 	public Integer deleteMachine(Long id) {
 		logger.info("deleteMachine called");
 		Machine machine = findMachineById(id);
-		machine.setIsActive("0");
+		machine.setIsActive("Yes");
 		saveOrUpdateMachine(machine);
 		return 0;
 

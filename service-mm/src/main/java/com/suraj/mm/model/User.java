@@ -1,5 +1,7 @@
 package com.suraj.mm.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -80,7 +82,7 @@ public class User extends AbstractEntity{
 	private String lostPassExpiry;
 
 	@Column(name = "last_login")
-	private String lastLogin;
+	private Date lastLogin;
 
 	@Column(name = "last_login_ip")
 	private String lastLoginIp;
@@ -92,7 +94,7 @@ public class User extends AbstractEntity{
 	private String active;
 
 	@Column(name = "activated_date")
-	private String activatedDate;
+	private Date activatedDate;
 
 	@Column(name = "user_desc")
 	private String userDesc;
@@ -234,11 +236,11 @@ public class User extends AbstractEntity{
 		this.lostPassExpiry = lostPassExpiry;
 	}
 
-	public String getLastLogin() {
+	public Date getLastLogin() {
 		return lastLogin;
 	}
 
-	public void setLastLogin(String lastLogin) {
+	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 
@@ -266,11 +268,11 @@ public class User extends AbstractEntity{
 		this.active = active;
 	}
 
-	public String getActivatedDate() {
+	public Date getActivatedDate() {
 		return activatedDate;
 	}
 
-	public void setActivatedDate(String activatedDate) {
+	public void setActivatedDate(Date activatedDate) {
 		this.activatedDate = activatedDate;
 	}
 

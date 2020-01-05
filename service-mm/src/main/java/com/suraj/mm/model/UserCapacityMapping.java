@@ -16,7 +16,7 @@ public class UserCapacityMapping extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "usrMchnInc")
+	@GeneratedValue(generator = "usrCptInc")
 	@GenericGenerator(name = "usrCptInc", strategy = "increment")
 	@Column(name = "user_capacity_mapping_id")
 	private Long userCapacityMappingId;
