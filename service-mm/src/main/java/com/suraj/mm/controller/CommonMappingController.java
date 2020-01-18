@@ -50,10 +50,23 @@ public class CommonMappingController {
 		return new ResponseEntity(userMachineList, HttpStatus.OK);
 	}
 
+	/**
+	 * Method for the Assignment of machine
+	 * 
+	 * @author Roshan Singh
+	 * @param machineDTO
+	 * @return
+	 */
 	@PostMapping(value = "/assignMachine/")
 	public ResponseEntity<?> assignMachine(@RequestBody MachineDTO machineDTO) {
-		UserMachineMapping ump = commonMappingService.saveOrUpdateUserMachineMapping(machineDTO);
+		List<UserMachineMapping> ump = commonMappingService.saveOrUpdateUserMachineMapping(machineDTO);
 		return new ResponseEntity(ump, HttpStatus.CREATED);
+	}
+
+	@GetMapping(value = "/findMachineById/{machineTypeId}")
+	public ResponseEntity<?> findMachineById(@PathVariable("machineTypeId") Long machineTypeId) {
+		MachineDTO mdto = commonMappingService.findMachineDtoByMachineId(machineTypeId);
+		return new ResponseEntity(mdto, HttpStatus.CREATED);
 	}
 
 	@PostMapping(value = "/modifyMachine/{entityType}")

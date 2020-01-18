@@ -39,6 +39,7 @@ import com.suraj.mm.repository.UserPriorityMappingRepository;
 import com.suraj.mm.repository.WorkPaymentMappingRepository;
 import com.suraj.mm.repository.WorkPriorityMappingRepository;
 import com.suraj.mm.repository.WorkRateMappingRepository;
+import com.suraj.mm.util.CommonUtil;
 
 /**
  * @author Dilip Kirar
@@ -74,6 +75,8 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 	private WorkRateMappingRepository workRateMappingRepository;
 	@Autowired
 	private MachineMapper machineMapper;
+	@Autowired
+	private CommonUtil commonUtil;
 
 	/**
 	 * In this function to create Hibernate session in persistence class Session
@@ -111,32 +114,37 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 		}
 
 	}
+
 	@Override
 	public List<?> findAllMachineDtoByUserId(Long userId) {
-		
+
 		return null;
 	}
 
 	@Override
-	public List<?> findAllMachineDtoByMachineId(Long machineId) {
+	public MachineDTO findMachineDtoByMachineId(Long machineId) {
 		Session hSession = entityManager.unwrap(Session.class);
-		
-		String sql ="SELECT u.user_id AS userID,m.machine_id AS machineId ,cm.capacity_id AS capacityId,cm.capacity_value AS capacityValue, " + 
-				"cm.capacity_desc AS capacityDesc,m.machine_name AS machineName, m.is_active AS machineStatus, m.machine_qty AS machineQty, m.machine_desc AS machineDesc " + 
-				"FROM  user_master u , machine_master m ,user_machine_mapping um ,capacity_master cm ,machine_capacity_mapping mcp ,user_capacity_mapping ucp " + 
-				"WHERE u.user_id= um.user_id AND m.machine_id= um.machine_id AND m.machine_id = mcp.machine_id AND mcp.capacity_id= cm.capacity_id AND m.is_active = 'Yes' AND m.machine_id ="+machineId;
+
+		String sql = "SELECT u.user_id AS userID,concat(u.first_name,\" \", u.last_name) as name,m.machine_id AS machineId ,cm.capacity_id AS capacityId,cm.capacity_value AS capacityValue, "
+				+ "cm.capacity_desc AS capacityDesc,m.machine_name AS machineName, m.is_active AS machineStatus, m.machine_qty AS machineQty, m.machine_desc AS machineDesc "
+				+ "FROM  user_master u , machine_master m ,user_machine_mapping um ,capacity_master cm ,machine_capacity_mapping mcp ,user_capacity_mapping ucp "
+				+ "WHERE u.user_id= um.user_id AND m.machine_id= um.machine_id AND m.machine_id = mcp.machine_id AND mcp.capacity_id= cm.capacity_id AND m.is_active = 'Yes' AND m.machine_id ="
+				+ machineId;
 		try {
-			hSession.createSQLQuery(sql).list();
-			
+			List<Object[]> objectList = hSession.createSQLQuery(sql).list();
+			return commonUtil.prepareMachineDto(objectList);
 		} finally {
-			// TODO: handle finally clause
+			if (hSession.isOpen()) {
+				hSession.close();
+			}
 		}
-		return null;
+
 	}
+
 	@Override
-	public UserMachineMapping saveOrUpdateUserMachineMapping(MachineDTO machineDto) {
-		UserMachineMapping userMachineMapping = machineMapper.mapFromMachineDto(machineDto);
-		UserMachineMapping ump = userMachineMappingRepository.save(userMachineMapping);
+	public List<UserMachineMapping> saveOrUpdateUserMachineMapping(MachineDTO machineDto) {
+		List<UserMachineMapping> userMachineMapping = MachineMapper.mapListFromMachineDto(machineDto);
+		List<UserMachineMapping> ump = userMachineMappingRepository.saveAll(userMachineMapping);
 		return ump == null ? null : ump;
 
 	}
@@ -392,7 +400,5 @@ public class CommonMappingServiceImpl implements CommonMappingService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }

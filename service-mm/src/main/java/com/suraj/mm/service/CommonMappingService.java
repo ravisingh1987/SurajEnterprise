@@ -25,9 +25,9 @@ public interface CommonMappingService {
 	
 	List<?> findAllMachineDtoByUserId(Long userId);	
 	
-	List<?> findAllMachineDtoByMachineId(Long machineId);
+	MachineDTO findMachineDtoByMachineId(Long machineId);
 	
-	UserMachineMapping saveOrUpdateUserMachineMapping(MachineDTO machineDto);
+	List<UserMachineMapping> saveOrUpdateUserMachineMapping(MachineDTO machineDto);
 
 	Integer deleteUserMachineMappingByUserId(Long userId);
 
